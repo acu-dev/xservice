@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -40,10 +41,22 @@ public class InfoServlet extends HttpServlet {
 			server.put("servicePath", "/xservice");
 			
 			// Default paths
-			JSONObject paths = new JSONObject();
-			paths.put("Home", "Home");
-			paths.put("Courses", "/courses");
-			paths.put("Departments", "/departments");
+			JSONArray paths = new JSONArray();
+			
+			JSONObject home = new JSONObject();
+			home.put("name", "Home");
+			home.put("path", "Home");
+			paths.put(home);
+			
+			JSONObject courses = new JSONObject();
+			courses.put("name", "Courses");
+			courses.put("path", "/courses");
+			paths.put(courses);
+
+			JSONObject departments = new JSONObject();
+			departments.put("name", "Departments");
+			departments.put("path", "/departments");
+			paths.put(departments);
 
 			// Output info
 			JSONObject info = new JSONObject();
