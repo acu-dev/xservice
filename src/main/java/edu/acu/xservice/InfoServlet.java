@@ -1,18 +1,23 @@
 
 package edu.acu.xservice;
 
+import com.xythos.common.api.XythosException;
 import com.google.inject.Singleton;
+import com.xythos.security.api.UserBase;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import static edu.acu.xservice.UserBaseFilter.XYTHOS_USER_BASE;
 
 /**
  *
@@ -32,7 +37,15 @@ public class InfoServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		UserBase user = (UserBase) session.getAttribute(XYTHOS_USER_BASE);
+		String homePath = "Home";
 		try {
+			homePath = user.getHomeDirectoryName();
+		} catch (XythosException e) {	}
+		try {
+			
+			
 			// Server
 			JSONObject server = new JSONObject();
 			server.put("protocol", request.getScheme());
@@ -45,7 +58,7 @@ public class InfoServlet extends HttpServlet {
 			
 			JSONObject home = new JSONObject();
 			home.put("name", "Home");
-			home.put("path", "Home");
+			home.put("path", homePath);
 			paths.put(home);
 			
 			JSONObject courses = new JSONObject();
