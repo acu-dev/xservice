@@ -30,6 +30,7 @@ public class GuiceServletConfig extends GuiceServletContextListener {
                         filter("/*").through(ContextPerRequestFilter.class);
 
 						// Servlets
+						serve("/version").with(VersionServlet.class);
 						serve("/info").with(InfoServlet.class);
                         serve("/detail/comment/*").with(CommentServlet.class);
                         serve("/detail/subscription/*").with(SubscriptionServlet.class);
