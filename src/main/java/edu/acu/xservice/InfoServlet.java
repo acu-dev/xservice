@@ -55,20 +55,25 @@ public class InfoServlet extends HttpServlet {
 			
 			// Default paths
 			JSONArray paths = new JSONArray();
+                        String imagesPath = request.getScheme() + "://" + request.getServerName()
+                                + ":" + request.getServerPort() + "/xservice/images/";
 			
 			JSONObject home = new JSONObject();
 			home.put("name", "Home");
 			home.put("path", homePath);
+                        home.put("icon", imagesPath + "house.png");
 			paths.put(home);
 			
 			JSONObject courses = new JSONObject();
 			courses.put("name", "Courses");
 			courses.put("path", "/courses");
+                        courses.put("icon", imagesPath + "gradhat.png");
 			paths.put(courses);
 
 			JSONObject departments = new JSONObject();
 			departments.put("name", "Departments");
 			departments.put("path", "/departments");
+                        departments.put("icon", imagesPath + "index-cards.png");
 			paths.put(departments);
 
 			// Output info
