@@ -55,8 +55,8 @@ public class XythosEntryServlet extends HttpServlet {
 			object.put("path", path);
 		}
 		
-		// Name
-		
+		// Last modified
+		object.put("lastModified", entry.getLastUpdateTimestamp());
 		
 		// File size & type
 		if (entry instanceof FileSystemFile) {
