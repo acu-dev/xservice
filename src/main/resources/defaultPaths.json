@@ -1,0 +1,8 @@
+[
+	{
+		"name":"Browse",
+		"path":"/",
+		"icon":"/images/eye.png",
+		"icon@2x":"/images/eye@2x.png"
+	}
+]
