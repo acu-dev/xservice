@@ -1,10 +1,6 @@
 
 package edu.acu.xservice;
 
-import com.google.inject.Inject;
-import com.google.inject.name.Named;
-import java.util.List;
-import java.util.Map;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -23,16 +19,9 @@ public class InfoResource {
 	
 	private static final Logger log = LoggerFactory.getLogger(InfoResource.class);
 	
-	private final List<Map<String, String>> defaultPaths;
-	
-	@Inject
-    private InfoResource(@Named("DefaultPaths") List<Map<String, String>> defaults) throws EntryException {
-		this.defaultPaths = defaults;
-    }
-	
 	@GET
 	public Response getInfo()
 	{
-		return Response.ok(defaultPaths).build();
+		return Response.ok().build();
 	}
 }
