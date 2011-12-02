@@ -39,29 +39,26 @@ public class EntryResource {
 	
 	private UriInfo uriInfo;
 	
-    private final String path;
+    private String path;
 
-	private FileManager files;
+	private FileManager fileManager;
 
 	private final DirectoryEntry entry;
 
     /** Creates a new instance of FileResource */
 	@Inject
-    private EntryResource(@PathParam("id") String pathParam, FileManager files, UriInfo uriInfo) throws EntryException {
-		logger.debug("path -> {}", pathParam);
-		logger.debug("absolutePath -> {}", uriInfo.getAbsolutePath().toString());
-		logger.debug("pathParameters -> {}", uriInfo.getPathParameters().getFirst("id"));
+    private EntryResource(@PathParam("id") String pathParam, FileManager files, UriInfo uri) throws EntryException {
+		logger.debug("absolutePath -> {}", uri.getAbsolutePath().toString());
+		logger.debug("pathParameters -> {}", uri.getPathParameters().getFirst("id"));
 		
-		//path = uriInfo.getPathParameters().getFirst("id");
-		
-		if (pathParam == null) {
-			pathParam = "/";
+		fileManager = files;
+		uriInfo = uri;
+		path = uriInfo.getPathParameters().getFirst("id");
+		if (path == null) {
+			path = "/";
 		}
-
-        this.path = pathParam;
-		this.files = files;
 		
-		this.entry = files.getDirectoryEntry(path);
+		entry = fileManager.getDirectoryEntry(path);
 		if (this.entry == null)
             throw new NotFoundException("Entry not found");
     }
@@ -74,8 +71,8 @@ public class EntryResource {
 	public Response getEntry() throws EntryException {
 		
 		logger.debug("getEntry");
-		Date lastModified = this.entry.getLastUpdated();
-		String et = files.getEtag(entry);
+		Date lastModified = entry.getLastUpdated();
+		String et = fileManager.getEtag(entry);
 		ResponseBuilder rb;
 		
 		if (et != null) {
@@ -88,7 +85,7 @@ public class EntryResource {
 			return rb.build();
 		
 		rb = Response.ok(entry).lastModified(entry.getLastUpdated());
-		et = files.getEtag(entry);
+		et = fileManager.getEtag(entry);
 		if (et != null)
 			rb.tag(et);
 		logger.debug("tag -> {}", et);

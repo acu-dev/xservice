@@ -43,6 +43,9 @@ public class UserBaseFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession();
 		
+		String servletPath = request.getServletPath();
+		logger.trace("Servlet Path {}", request.getServletPath());
+		
 		UserBase user = (UserBase) session.getAttribute(XYTHOS_USER_BASE);
 		
         if (user == null) {
