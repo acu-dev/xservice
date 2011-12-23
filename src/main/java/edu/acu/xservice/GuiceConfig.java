@@ -59,12 +59,10 @@ public class GuiceConfig extends GuiceServletContextListener {
 						
 						
 						// Handle user auth
-						//filterRegex("^/[^(xservice/info)].*").through(UserBaseFilter.class);
-						filter("/*").through(UserBaseFilter.class);
+						filter("/rs/*").through(UserBaseFilter.class);
 						
-						// Set session context
-                        //filterRegex("^/[^(xservice/info)].*").through(ContextPerRequestFilter.class);
-						filter("/*").through(ContextPerRequestFilter.class);
+						// Setup Xythos session context
+						filter("/rs/*").through(ContextPerRequestFilter.class);
 						
 						
 						bind(Context.class).toProvider(ContextProvider.class);
@@ -74,7 +72,6 @@ public class GuiceConfig extends GuiceServletContextListener {
 						// Resources
 						bind(EntryResource.class);
 						bind(PathsResource.class);
-						bind(InfoResource.class);
 						
 						// Writers
 						bind(DirectoryWriter.class);

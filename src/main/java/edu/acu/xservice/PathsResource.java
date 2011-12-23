@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
  * @author cjs00c
  */
 @Produces("application/json")
-@Path("/paths")
+@Path("/rs/paths")
 public class PathsResource {
 	
 	private static final Logger log = LoggerFactory.getLogger(PathsResource.class);
@@ -27,7 +27,7 @@ public class PathsResource {
 	private final List<Map<String, String>> paths;
 	
 	@Inject
-    private PathsResource(@Named("XdrivePaths") List<Map<String, String>> xdrivePaths) throws EntryException {
+    private PathsResource(@Named("XdrivePaths") List<Map<String, String>> xdrivePaths) {
 		this.paths = xdrivePaths;
     }
 	

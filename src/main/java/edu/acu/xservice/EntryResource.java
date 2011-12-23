@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
  * @author hgm02a
  */
 @Produces("application/json")
-@Path("/entry/{id}")
+@Path("/rs/entry/{id}")
 public class EntryResource {
 
 	private static final Logger logger = LoggerFactory.getLogger(EntryResource.class);
