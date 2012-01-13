@@ -1,0 +1,9 @@
+{
+	"xservice" : {
+		"version" : "${project.version}",
+		"servicePath" : "/xservice/rs"
+	},
+	"xdrive" : {
+		"latestVersion" : "1.0-SNAPSHOT"
+	}
+}

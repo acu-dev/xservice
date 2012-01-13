@@ -13,6 +13,7 @@
         <url-pattern>/rs/*</url-pattern>
     </filter-mapping>
     <welcome-file-list>
+		<welcome-file>info.json</welcome-file>
         <welcome-file>index.jsp</welcome-file>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
@@ -25,4 +26,8 @@
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>
     </security-constraint>
+	<mime-mapping>
+        <extension>json</extension>
+        <mime-type>application/json</mime-type>
+    </mime-mapping>
 </web-app>
