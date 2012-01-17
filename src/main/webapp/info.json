@@ -1,9 +1,14 @@
 {
 	"xservice" : {
 		"version" : "${project.version}",
-		"servicePath" : "/xservice/rs"
+		"protocol" : "https",
+		"host" : "files.example.tld",
+		"port" : 443,
+		"context" : "/xservice",
+		"serviceBase" : "/rs"
 	},
 	"xdrive" : {
-		"latestVersion" : "1.0-SNAPSHOT"
+		"latestVersion" : "1.0-SNAPSHOT",
+		"downloadURL" : "https://xdrive.example.tld"
 	}
 }
