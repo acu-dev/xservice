@@ -16,10 +16,8 @@ Installation
 
 1. Unpack the `xservice-x.x.war` into your `{xythos-base}/wfs-7.x.x/webapps` folder
 1. Add the context to `{xythos-base}/server-7.x.x/conf/server.xml`:
-
-	<!-- xService - RESTful services for xDrive -->
-	<Context docBase="xservice" path="/xservice"/>
-
+		<!-- xService - RESTful services for xDrive -->
+		<Context docBase="xservice" path="/xservice"/>
 1. Edit the server details in `{xythos-base}/wfs-7.x.x/webapps/xservice/info.json` to match your installation
 1. Restart Xythos and visit http(s)://your-xythos-url.tld/xservice to verify
 
