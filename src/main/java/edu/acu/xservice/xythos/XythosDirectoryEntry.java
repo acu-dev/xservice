@@ -33,7 +33,8 @@ public class XythosDirectoryEntry implements DirectoryEntry {
 	
 	public String getType() {
 		try {
-			return entry.getFileContentType();
+			String type = entry.getFileContentType();
+			return (type == null) ? "folder" : type;
 		} catch (XythosException ex) {
 			return "";
 		}
